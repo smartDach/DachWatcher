@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard – Sensorüberwachung</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { width: 50%; margin: auto; }
+        .status { font-size: 20px; padding: 10px; margin: 10px; color: white; }
+        .green { background-color: green; }
+        .yellow { background-color: yellow; color: black; }
+        .red { background-color: red; }
+        .menu { margin: 20px; }
+        .menu button { padding: 10px; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Dashboard – Sensorüberwachung</h1>
+    <div class="menu">
+        <button onclick="setInterval()">Intervall einstellen</button>
+        <button onclick="checkBattery()">Akkustand Sensor</button>
+        <button onclick="checkSignal()">Signalstärke</button>
+    </div>
+    
+    <div class="container">
+        <h2>Feuchtigkeit</h2>
+        <div id="humidity" class="status">75%</div>
+
+        <h2>Temperatur</h2>
+        <div id="temperature" class="status">22°C</div>
+    </div>
+
+    <script>
+        function updateStatus(id, value) {
+            let element = document.getElementById(id);
+            element.innerText = value;
+
+            if (value < 30) {
+                element.className = "status green";
+            } else if (value < 70) {
+                element.className = "status yellow";
+            } else {
+                element.className = "status red";
+            }
+        }
+
+        // Beispielwerte setzen
+        updateStatus("humidity", 75);
+        updateStatus("temperature", 22);
+    </script>
+</body>
+</html>
